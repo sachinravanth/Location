@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "43037848410",
+    "firebase_url": "https://location-based-services-01.firebaseio.com",
+    "project_id": "location-based-services-01",
+    "storage_bucket": "location-based-services-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43037848410:android:04eef303f15cf654",
+        "android_client_info": {
+          "package_name": "com.example.sachin.location"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43037848410-og67rti04pu46fqsafl1nnrt4u2e7k15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZBOMGN3S7t6SqDEoW241okT_-91EEczY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
