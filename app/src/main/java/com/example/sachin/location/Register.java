@@ -43,7 +43,7 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Some fields missing...",Toast.LENGTH_SHORT).show();
                 }else {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    final String uid = database.getReference().getKey();
+                    final String uid = database.getReference().push().getKey();
                     DatabaseReference databaseReference = database.getReference(getString(R.string.firebase_path));
                     databaseReference.child("userDetails").child(uid).child("name").setValue(name.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
