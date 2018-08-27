@@ -48,7 +48,7 @@ public class Register extends AppCompatActivity {
                     databaseReference.child("userDetails").child(uid).child("name").setValue(name.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(getApplicationContext(),"Success for Key: "+uid+", name: "+name.getText().toString(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Success - Key: "+uid+", name: "+name.getText().toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
