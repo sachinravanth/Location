@@ -45,12 +45,12 @@ public class Register extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     final String uid = database.getReference().push().getKey();
                     DatabaseReference databaseReference = database.getReference(getString(R.string.firebase_path));
-                    databaseReference.child("userDetails").child(uid).child("name").setValue(name.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(getApplicationContext(),"Success - Key: "+uid+", name: "+name.getText().toString(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    databaseReference.child("userDetails").child(uid).child("name").setValue(name.getText().toString());
+                    databaseReference.child("userDetails").child(uid).child("date").setValue(date.getText().toString());
+                    databaseReference.child("userDetails").child(uid).child("age").setValue(age.getText().toString());
+                    databaseReference.child("userDetails").child(uid).child("address").setValue(address.getText().toString());
+                    databaseReference.child("userDetails").child(uid).child("emailID").setValue(email.getText().toString());
+                    databaseReference.child("userDetails").child(uid).child("password").setValue(password.getText().toString());
                 }
             }
         });

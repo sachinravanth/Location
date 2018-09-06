@@ -102,7 +102,6 @@ public class TrackerService extends Service {
                     Location location = locationResult.getLastLocation();
                     if (location != null) {
                         Log.d(TAG, "location update " + location);
-                        Log.d("DSR","coor: "+location);
                         ref.setValue(location);
                     }
                 }
