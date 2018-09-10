@@ -43,7 +43,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mAuth = FirebaseAuth.getInstance();
-
     }
 
 
@@ -80,9 +79,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
-
     private void subscribeToUpdates() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_path));
+        final String path = getString(R.string.firebase_path)+"/"+getString(R.string.transport_id);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(path);
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {

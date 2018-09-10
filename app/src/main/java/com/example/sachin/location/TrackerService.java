@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,6 +26,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 public class TrackerService extends Service {
     private static final String TAG = TrackerService.class.getSimpleName();
@@ -88,8 +90,9 @@ public class TrackerService extends Service {
         request.setFastestInterval(5000);
         request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
-        final String user = (String) FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_path)).getKey();
-        final String path = getString(R.string.firebase_path) + "/" + getString(R.string.transport_id);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final String uid = database.getReference().push().getKey();
+        final String path = getString(R.string.firebase_path) + "/" + getString(R.string.transport_id) + "/"+uid;
         int permission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
         if (permission == PackageManager.PERMISSION_GRANTED) {
@@ -103,6 +106,7 @@ public class TrackerService extends Service {
                     if (location != null) {
                         Log.d(TAG, "location update " + location);
                         ref.setValue(location);
+                        //UserKey: Uid:QSjX6ax2FvhgHvKl2FeTT23DnWz2 | FirebaseUser:com.google.firebase.auth.internal.zzl@1287df10 | FirebaseToken:com.google.android.gms.tasks.zzu@171d7a1d
                     }
                 }
             }, null);
