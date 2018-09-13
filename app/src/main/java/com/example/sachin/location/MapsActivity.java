@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -116,18 +117,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // boundaries required to show them all on the map at once
         String key = dataSnapshot.getKey();
         HashMap<String, Object> value = (HashMap<String, Object>) dataSnapshot.getValue();
-        double lat = Double.parseDouble(value.get("latitude").toString());
-        double lng = Double.parseDouble(value.get("longitude").toString());
-        LatLng location = new LatLng(lat, lng);
-        if (!mMarkers.containsKey(key)) {
-            mMarkers.put(key, mMap.addMarker(new MarkerOptions().title(key).position(location)));
+        String strlat = value.get("latitude").toString();
+        String strlng = value.get("longitude").toString();
+        if (strlat.isEmpty() && strlng.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "No one online...", Toast.LENGTH_LONG).show();
         } else {
-            mMarkers.get(key).setPosition(location);
+            double lat = Double.parseDouble(value.get("latitude").toString());
+            double lng = Double.parseDouble(value.get("longitude").toString());
+            LatLng location = new LatLng(lat, lng);
+            if (!mMarkers.containsKey(key)) {
+                mMarkers.put(key, mMap.addMarker(new MarkerOptions().title(key).position(location)));
+            } else {
+                mMarkers.get(key).setPosition(location);
+            }
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            for (Marker marker : mMarkers.values()) {
+                builder.include(marker.getPosition());
+            }
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 300));
         }
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (Marker marker : mMarkers.values()) {
-            builder.include(marker.getPosition());
-        }
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 300));
     }
 }

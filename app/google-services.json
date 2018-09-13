@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "43037848410",
-    "firebase_url": "https://location-based-services-01.firebaseio.com",
-    "project_id": "location-based-services-01",
-    "storage_bucket": "location-based-services-01.appspot.com"
+    "project_number": "207349909665",
+    "firebase_url": "https://reach-me-01.firebaseio.com",
+    "project_id": "reach-me-01",
+    "storage_bucket": "reach-me-01.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:43037848410:android:04eef303f15cf654",
+        "mobilesdk_app_id": "1:207349909665:android:04eef303f15cf654",
         "android_client_info": {
           "package_name": "com.example.sachin.location"
         }
       },
       "oauth_client": [
         {
-          "client_id": "43037848410-og67rti04pu46fqsafl1nnrt4u2e7k15.apps.googleusercontent.com",
+          "client_id": "207349909665-tkqh6uh7qeudhhglnj4jq1vr89r7illk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sachin.location",
+            "certificate_hash": "56a981ccab35f84defb954e56789e3b3977ca565"
+          }
+        },
+        {
+          "client_id": "207349909665-cdg5l68b32k6tpvgsfj2mbl90kr9h6sa.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZBOMGN3S7t6SqDEoW241okT_-91EEczY"
+          "current_key": "AIzaSyCahwpsbbvDBDF-rQSZ9xD5mhpPuJg8yDg"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207349909665-cdg5l68b32k6tpvgsfj2mbl90kr9h6sa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
