@@ -11,7 +11,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -28,6 +30,8 @@ import android.util.Log;
 
 public class TrackerService extends Service {
     private static final String TAG = TrackerService.class.getSimpleName();
+    String phoneNumber;
+    String uid;
     @Override
     public IBinder onBind(Intent intent) {return null;}
 
@@ -36,6 +40,7 @@ public class TrackerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
         buildNotification();
         loginToFirebase();
     }
@@ -68,6 +73,7 @@ public class TrackerService extends Service {
         // Authenticate with Firebase, and request location updates
         String email = getString(R.string.firebase_email);
         String password = getString(R.string.firebase_password);
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
                 email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
             @Override

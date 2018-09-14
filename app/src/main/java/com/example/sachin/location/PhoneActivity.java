@@ -106,15 +106,20 @@ public class PhoneActivity extends AppCompatActivity {
     public void sendCode(View view) {
 
         number = ccp.getFullNumberWithPlus();
+        if (!number.isEmpty()){
+            Toast.makeText(getApplicationContext(),"OTP Requested...",Toast.LENGTH_SHORT).show();
+            setUpVerificatonCallbacks();
 
-        setUpVerificatonCallbacks();
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    number,        // Phone number to verify
+                    60,                 // Timeout duration
+                    TimeUnit.SECONDS,   // Unit of timeout
+                    this,               // Activity (for callback binding)
+                    verificationCallbacks);
+        }else {
+            Toast.makeText(getApplicationContext(),"Enter a valid number...",Toast.LENGTH_SHORT).show();
+        }
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                number,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                this,               // Activity (for callback binding)
-                verificationCallbacks);
     }
 
     private void setUpVerificatonCallbacks() {
@@ -181,11 +186,14 @@ public class PhoneActivity extends AppCompatActivity {
                             statusText.setText("Signed In");
                             resendButton.setEnabled(false);
                             verifyButton.setEnabled(false);
+                            Toast.makeText(getApplicationContext(),"Login Success...",Toast.LENGTH_SHORT).show();
                             FirebaseUser user = task.getResult().getUser();
                             String phoneNumber = user.getPhoneNumber().toString();
+                            String uid = user.getUid().toString();
 
                             Intent intent = new Intent(PhoneActivity.this, Login.class);
                             intent.putExtra("phone", phoneNumber);
+                            intent.putExtra("uid",uid);
                             startActivity(intent);
                             finish();
 

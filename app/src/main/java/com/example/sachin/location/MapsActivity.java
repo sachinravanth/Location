@@ -1,5 +1,6 @@
 package com.example.sachin.location;
 
+import android.content.Intent;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -44,6 +45,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mAuth = FirebaseAuth.getInstance();
+        Intent intent = getIntent();
+        final String phoneNumber = intent.getStringExtra("phone");
+        final String uid = intent.getStringExtra("uid");
+        Log.d("paapu","Phone Number:"+phoneNumber+", UID:"+uid);
 
     }
 

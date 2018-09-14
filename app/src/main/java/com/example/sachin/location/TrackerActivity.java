@@ -9,15 +9,21 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 
 public class TrackerActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST = 1;
-
+    String phoneNumber = "";
+    String uid = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        phoneNumber = intent.getStringExtra("phone");
+        uid = intent.getStringExtra("uid");
+        Log.d("paapu","Phone Number:"+phoneNumber+", UID:"+uid);
         // Check GPS is enabled
         LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -37,7 +43,10 @@ public class TrackerActivity extends AppCompatActivity {
         }
     }
     private void startTrackerService() {
-        startService(new Intent(this, TrackerService.class));
+        Intent intent = new Intent(this, TrackerService.class);
+        intent.putExtra("phone",phoneNumber);
+        intent.putExtra("uid",uid);
+        startService(intent);
         finish();
     }
 
