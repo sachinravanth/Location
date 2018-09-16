@@ -20,11 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -46,8 +42,13 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".Register" />
         <activity android:name=".TrackerActivity" />
-        <activity android:name=".Login"/>
+        <activity android:name=".Login">
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+        </activity>
         <service
             android:name=".TrackerService"
             android:enabled="true"
@@ -61,7 +62,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".Login"></activity>
+
     </application>
 
 </manifest>

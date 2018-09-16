@@ -1,5 +1,19 @@
 package com.example.sachin.location;
 
+import android.Manifest;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -11,32 +25,20 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.Manifest;
-import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 public class TrackerService extends Service {
     private static final String TAG = TrackerService.class.getSimpleName();
     String phoneNumber;
     String uid;
+
     @Override
-    public IBinder onBind(Intent intent) {return null;}
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
     public TrackerService() {
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -44,6 +46,7 @@ public class TrackerService extends Service {
         buildNotification();
         loginToFirebase();
     }
+
     private void buildNotification() {
         String stop = "stop";
         registerReceiver(stopReceiver, new IntentFilter(stop));
@@ -75,7 +78,7 @@ public class TrackerService extends Service {
         String password = getString(R.string.firebase_password);
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
-                email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+                email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
@@ -94,7 +97,6 @@ public class TrackerService extends Service {
         request.setFastestInterval(5000);
         request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
-        final String user = (String) FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_path)).getKey();
         final String path = getString(R.string.firebase_path) + "/" + getString(R.string.transport_id);
         int permission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);

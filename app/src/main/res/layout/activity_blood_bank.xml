@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Blood_bank"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Blood Bank"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="90dp"
+        android:textSize="20sp"
+        />
+    <EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="Blood Group"
+    android:textSize="20sp"
+    android:layout_marginLeft="90dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Height"
+        android:textSize="20sp"
+        android:layout_marginLeft="90dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Weight"
+        android:textSize="20sp"
+        android:layout_marginLeft="90dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Last blood donation date"
+        android:textSize="20sp"
+        android:layout_marginLeft="90dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:textSize="20sp"
+        android:layout_marginLeft="90dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Medication"
+        android:textSize="20sp"
+        android:layout_marginLeft="90dp"/>
+    <Button
+        android:id="@+id/bb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:text="ADD"
+        android:textSize="20sp"/>
+
+
+</LinearLayout>
